@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Detection Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+        .info-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-preview {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .header-preview img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🔍 Browser Detection Test</h1>
+
+    <div class="info-box">
+        <h3>Browser Information:</h3>
+        <p><strong>Browser:</strong> <span id="browserInfo">Loading...</span></p>
+        <p><strong>OS:</strong> <span id="osInfo">Loading...</span></p>
+        <p><strong>Version:</strong> <span id="versionInfo">Loading...</span></p>
+        <p><strong>Fullscreen Support:</strong> <span id="fullscreenSupport">Loading...</span></p>
+    </div>
+
+    <div class="info-box">
+        <h3>Header Image Preview:</h3>
+        <p>This is the fake browser header that will be shown:</p>
+        <div class="header-preview">
+            <img id="headerPreview" src="" alt="Loading header preview...">
+        </div>
+        <p><strong>Image Path:</strong> <span id="imagePath">Loading...</span></p>
+    </div>
+
+    <div class="info-box">
+        <h3>CSS Classes Applied:</h3>
+        <p>HTML element classes: <code id="htmlClasses">Loading...</code></p>
+    </div>
+
+    <div class="info-box">
+        <h3>Actions:</h3>
+        <button onclick="testFullscreen()">🖥️ Test Fullscreen</button>
+        <button onclick="goToDemo()">🚀 Go to Demo</button>
+    </div>
+
+    <script src="js/libs/jquery-1.7.2.js"></script>
+    <script src="js/libs/browser-detect.js"></script>
+    <script src="js/libs/fullscreen-api.js"></script>
+
+    <script>
+        $(function () {
+            // Khởi tạo browser detection
+            BrowserDetect.init();
+
+            // Hiển thị thông tin browser
+            $("#browserInfo").text(BrowserDetect.browser);
+            $("#osInfo").text(BrowserDetect.OS);
+            $("#versionInfo").text(BrowserDetect.version);
+            $("#fullscreenSupport").text(window.fullscreenSupport ? "✅ Yes" : "❌ No");
+
+            // Function để set header image
+            function setHeaderImage() {
+                var imagePath = "images/";
+                var browser = BrowserDetect.browser.toLowerCase();
+                var os = BrowserDetect.OS.toLowerCase();
+
+                if (browser === "chrome") {
+                    if (os === "mac") {
+                        imagePath += "chrome-osx-header.svg";
+                    } else if (os === "windows") {
+                        imagePath += "chrome-windows-header.svg";
+                    } else if (os === "linux") {
+                        imagePath += "chrome-linux-header.svg";
+                    } else {
+                        imagePath += "chrome-osx-header.svg";
+                    }
+                } else if (browser === "firefox") {
+                    if (os === "mac") {
+                        imagePath += "firefox-osx-header.svg";
+                    } else if (os === "windows") {
+                        imagePath += "firefox-windows-header.svg";
+                    } else if (os === "linux") {
+                        imagePath += "firefox-linux-header.svg";
+                    } else {
+                        imagePath += "firefox-osx-header.svg";
+                    }
+                } else if (browser === "safari") {
+                    imagePath += "safari-osx-header.svg";
+                } else {
+                    imagePath += "chrome-osx-header.svg";
+                }
+
+                $("#headerPreview").attr("src", imagePath);
+                $("#imagePath").text(imagePath);
+            }
+
+            // Set header image
+            setHeaderImage();
+
+            // Thêm CSS classes
+            if (BrowserDetect.browser == "Chrome") {
+                $('html').addClass('chrome');
+            } else if (BrowserDetect.browser == "Firefox") {
+                $('html').addClass('firefox');
+            } else if (BrowserDetect.browser == "Safari") {
+                $('html').addClass('safari');
+            }
+
+            if (BrowserDetect.OS == "Mac") {
+                $('html').addClass('osx');
+            } else if (BrowserDetect.OS == "Windows") {
+                $('html').addClass('windows');
+            } else if (BrowserDetect.OS == "Linux") {
+                $('html').addClass('linux');
+            }
+
+            // Hiển thị classes
+            $("#htmlClasses").text($('html').attr('class') || 'none');
+        });
+
+        function testFullscreen() {
+            if (window.fullscreenSupport) {
+                if (elementPrototype.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (elementPrototype.webkitRequestFullScreen) {
+                    document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+                } else if (elementPrototype.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                }
+            } else {
+                alert('Fullscreen API không được hỗ trợ!');
+            }
+        }
+
+        function goToDemo() {
+            window.location.href = 'group5.html';
+        }
+    </script>
+</body>
+
+</html>

