@@ -1,5 +1,7 @@
 # 🚨 HTML5 Fullscreen Phishing Demo
 
+🔗 **GitHub Repository**: https://github.com/vanphatit/fullscreen-phishing
+
 **⚠️ CHỈ DÀNH CHO MỤC ĐÍCH GIÁO DỤC VÀ NGHIÊN CỨU BẢO MẬT ⚠️**
 
 Đây là một demo giáo dục về kỹ thuật tấn công phishing sử dụng HTML5 Fullscreen API để tạo ra giao diện browser giả mạo, nhằm mục đích nâng cao nhận thức về bảo mật web.
@@ -47,31 +49,9 @@ html5-fullscreen-phishing/
 ```
 
 ## 🚀 Cách sử dụng
-
-### 1. Khởi động Server
-
-```bash
-# Sử dụng Python HTTP server
-python -m http.server 8000
-
-# Hoặc sử dụng Node.js
-npx http-server -p 8000
-
-# Hoặc sử dụng PHP
-php -S localhost:8000
-```
-
-### 2. Truy cập Demo
-
-- **Trang chủ**: http://localhost:8000/group5.html
-- **Test browser**: http://localhost:8000/test.html
-- **Login giả**: http://localhost:8000/login.html (được chuyển hướng tự động)
-
-### 3. Cách Demo hoạt động
-
 1. **Bước 1**: Mở `group5.html` - trang chủ với button "Login with Instagram"
 2. **Bước 2**: Click vào button sẽ chuyển sang `login.html`
-3. **Bước 3**: Trang sẽ tự động request fullscreen và hiện fake browser header
+3. **Bước 3**: Trang sẽ tự động request fullscreen và hiện fake browser header (nếu chưa thì thử bấm vào chỗ bất kỳ trên màn hình)
 4. **Bước 4**: Người dùng nhập thông tin login vào form giả
 5. **Bước 5**: Khi submit form, sẽ hiện popup cảnh báo về việc bị phishing
 
